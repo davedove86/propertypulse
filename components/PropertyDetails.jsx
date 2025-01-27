@@ -29,7 +29,7 @@ const PropertyDetails = ({ property }) => {
             <div className='text-gray-500 mr-2 font-bold'>Nightly</div>
             <div className='text-2xl font-bold text-blue-500'>
               {property.rates.nightly ? (
-                `$${property.rates.nightly.toLocaleString()}`
+                `£${property.rates.nightly.toLocaleString()}`
               ) : (
                 <FaTimes className='text-red-700' />
               )}
@@ -39,7 +39,7 @@ const PropertyDetails = ({ property }) => {
             <div className='text-gray-500 mr-2 font-bold'>Weekly</div>
             <div className='text-2xl font-bold text-blue-500'>
               {property.rates.weekly ? (
-                `$${property.rates.weekly.toLocaleString()}`
+                `£${property.rates.weekly.toLocaleString()}`
               ) : (
                 <FaTimes className='text-red-700' />
               )}
@@ -49,7 +49,7 @@ const PropertyDetails = ({ property }) => {
             <div className='text-gray-500 mr-2 font-bold'>Monthly</div>
             <div className='text-2xl font-bold text-blue-500'>
               {property.rates.monthly ? (
-                `$${property.rates.monthly.toLocaleString()}`
+                `£${property.rates.monthly.toLocaleString()}`
               ) : (
                 <FaTimes className='text-red-700' />
               )}
