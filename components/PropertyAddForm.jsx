@@ -18,7 +18,7 @@ const PropertyAddForm = () => {
           <option value='Apartment'>Apartment</option>
           <option value='Condo'>Condo</option>
           <option value='House'>House</option>
-          <option value='CabinOrCottage'>Cabin or Cottage</option>
+          <option value='Cottage'>Cottage</option>
           <option value='Room'>Room</option>
           <option value='Studio'>Studio</option>
           <option value='Other'>Other</option>
@@ -72,18 +72,18 @@ const PropertyAddForm = () => {
         />
         <input
           type='text'
-          id='state'
-          name='location.state'
+          id='country'
+          name='location.country'
           className='border rounded w-full py-2 px-3 mb-2'
-          placeholder='State'
+          placeholder='Country'
           required
         />
         <input
           type='text'
-          id='zipcode'
-          name='location.zipcode'
+          id='postcode'
+          name='location.postcode'
           className='border rounded w-full py-2 px-3 mb-2'
-          placeholder='Zipcode'
+          placeholder='Postcode'
         />
       </div>
 

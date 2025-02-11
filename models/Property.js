@@ -21,8 +21,8 @@ const PropertySchema = new Schema(
     location: {
       street: String,
       city: String,
-      state: String,
-      zipcode: String,
+      country: String,
+      postcode: String,
     },
     beds: {
       type: Number,

@@ -4,6 +4,7 @@ import Property from '@/models/Property';
 import { getSessionUser } from '@/utils/getSessionUser';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import cloudinary from '@/config/cloudinary';
 
 async function addProperty(formData) {
   await connectDB();
@@ -18,10 +19,7 @@ async function addProperty(formData) {
 
   // Access all values from Amenities and images
   const amenities = formData.getAll('amenities');
-  const images = formData
-    .getAll('images')
-    .filter((image) => image.name !== '')
-    .map((image) => image.name);
+  const images = formData.getAll('images').filter((image) => image.name !== '');
 
   const propertyData = {
     owner: userId,
@@ -31,8 +29,8 @@ async function addProperty(formData) {
     location: {
       street: formData.get('location.street'),
       city: formData.get('location.city'),
-      state: formData.get('location.state'),
-      zipcode: formData.get('location.zipcode'),
+      country: formData.get('location.country'),
+      postcode: formData.get('location.postcode'),
     },
     beds: formData.get('beds'),
     baths: formData.get('baths'),
@@ -48,8 +46,31 @@ async function addProperty(formData) {
       email: formData.get('seller_info.email'),
       phone: formData.get('seller_info.phone'),
     },
-    images,
   };
+
+  const imageUrls = [];
+
+  for (const imageFile of images) {
+    const imageBuffer = await imageFile.arrayBuffer();
+    const imageArray = Array.from(new Uint8Array(imageBuffer));
+    const imageData = Buffer.from(imageArray);
+
+    // convert to base 64
+    const imageBase64 = imageData.toString('base64');
+
+    // Make request to cloudinary
+    const result = await cloudinary.uploader.upload(
+      `data:image/png;base64,${imageBase64}`,
+      {
+        folder: 'propertypulse',
+      }
+    );
+
+    imageUrls.push(result.secure_url);
+  }
+
+  propertyData.images = imageUrls;
+  2;
 
   const newProperty = new Property(propertyData);
   await newProperty.save();
