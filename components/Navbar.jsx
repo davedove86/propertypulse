@@ -104,7 +104,7 @@ const Navbar = () => {
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
           {!session && (
-            <div className='hidden md:block md:ml-6'>
+            <div className=' md:block md:ml-6'>
               <div className='flex items-center'>
                 {providers &&
                   Object.values(providers).map((provider, index) => (
